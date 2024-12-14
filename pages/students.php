@@ -1,4 +1,142 @@
-<?php
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Accommodation Management System</title>
+</head>
+
+<style>
+    /* */
+   .h2-header{
+    text-align: center;
+   }
+   
+   .form-section {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #ffffff;
+        width: 50%;
+        margin: 30px auto;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+   }
+
+   .addS{
+        color: black;
+   }
+
+   body {
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+    }
+
+
+    h3.addS, h3.nextofkin {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        color: #f1485b;
+        margin-bottom: 20px;
+    }
+
+    input, select, textarea, button {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+        box-sizing: border-box;
+    }
+
+    input[type="text"], input[type="email"], input[type="date"], select {
+        background-color: #f9f9f9;
+    }
+
+    textarea {
+        resize: vertical;
+        min-height: 100px;
+    }
+
+    button {
+        background-color: #f1485b; 
+        color: white;
+        border: 2px solid #f1485b;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: all 0.3s ease;
+    }
+
+    button:hover {
+        background-color: white;
+        color: #f1485b;
+        border-color: #f1485b;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+   /** Student List Design */
+   .h3-studentlist {
+        color: black;
+        text-align: center;
+   }
+
+   table {
+        margin: 0 auto; 
+        border-collapse: collapse; 
+    }
+
+    table {
+        width: 80%;
+        margin: 20px auto; 
+        border-collapse: collapse;
+        background-color: white;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #34495e;
+        color: white;
+    }
+
+    tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    button {
+        background-color: #f1485b;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+
+    button:hover {
+        background-color: white;
+        color: #f1485b;
+        border: 1px solid #f1485b;
+    }
+
+    
+    
+</style>
+
+<body>
+    <?php
 session_start();
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
@@ -13,58 +151,61 @@ include '../includes/header.php';
 // Handle Create, Read, Update, and Delete here
 ?>
 
-<h2>Manage Students</h2>
+<h2 class="h2-header">Manage Students</h2>
 
+<div class="form-section">
+    <form action="" method="post">
+         <div>
+            <h3 class="addS">Add Student</h3>
+         </div>
+        <input type="text" name="banner_number" placeholder="Banner Number" required><br>
+        <input type="text" name="first_name" placeholder="First Name" required>
+        <input type="text" name="last_name" placeholder="Last Name" required> <br>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="text" name="mobile_phone" placeholder="Mobile Phone"> <br>
+        <input type="text" name="home_address" placeholder="Home Address"> <br>
+        <input type="date" name="dob" placeholder="Date of Birth"> <br>
+        <select name="gender">
+            <option value="">Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+        </select>
+        <select name="student_category" required>
+            <option value="">Select Category</option>
+            <option value="Undergraduate">Undergraduate</option>
+            <option value="Postgraduate">Postgraduate</option>
+        </select> <br>
+        <textarea name="special_needs" placeholder="Special Needs"></textarea> <br>
+        <textarea name="additional_comments" placeholder="Additional Comments"></textarea>
+        
+        <h3 class="nextofkin">Next-of-Kin Information</h3>
+        <label for="kin_name">Name:</label> <br>
+        <input type="text" name="kin_name" id="kin_name" required> <br> <br>
+
+        <label for="relationship">Relationship:</label> <br>
+        <input type="text" name="relationship" id="relationship" required> <br> <br>
+
+        <label for="contact_phone">Phone:</label> <br>
+        <input type="text" name="contact_phone" id="contact_phone" required> <br> <br>
+
+        <label for="kin_address">Address:</label><br>
+        <textarea name="kin_address" id="kin_address"></textarea> <br> <br>
+
+        <button type="submit" name="add_student">Add Student</button>
+    </form>
+</div>
 <!-- Form to Add New Student -->
-<form action="" method="post">
-    <h3>Add Student</h3>
-    <input type="text" name="banner_number" placeholder="Banner Number" required>
-    <input type="text" name="first_name" placeholder="First Name" required>
-    <input type="text" name="last_name" placeholder="Last Name" required>
-    <input type="email" name="email" placeholder="Email" required>
-    <input type="text" name="mobile_phone" placeholder="Mobile Phone">
-    <input type="text" name="home_address" placeholder="Home Address">
-    <input type="date" name="dob" placeholder="Date of Birth">
-    <select name="gender">
-        <option value="">Select Gender</option>
-        <option value="Male">Male</option>
-        <option value="Female">Female</option>
-        <option value="Other">Other</option>
-    </select>
-    <select name="student_category" required>
-        <option value="">Select Category</option>
-        <option value="Undergraduate">Undergraduate</option>
-        <option value="Postgraduate">Postgraduate</option>
-    </select>
-    <textarea name="special_needs" placeholder="Special Needs"></textarea>
-    <textarea name="additional_comments" placeholder="Additional Comments"></textarea>
-
-    <h3>Next-of-Kin Information</h3>
-    <label for="kin_name">Name:</label>
-    <input type="text" name="kin_name" id="kin_name" required>
-
-    <label for="relationship">Relationship:</label>
-    <input type="text" name="relationship" id="relationship" required>
-
-    <label for="contact_phone">Phone:</label>
-    <input type="text" name="contact_phone" id="contact_phone" required>
-
-    <label for="kin_address">Address:</label>
-    <textarea name="kin_address" id="kin_address"></textarea>
-
-    <button type="submit" name="add_student">Add Student</button>
-
-
-</form>
 
 <hr>
 
 <!-- Display Students -->
-<h3>Student List</h3>
-<table border="1">
+
+<h3 class="h3-studentlist">Student List</h3>
+<table class= "table-design" border="1">
     <tr>
         <th>Banner Number</th>
-        <th>First Name</th>
+        <th>First Name</th> 
         <th>Last Name</th>
         <th>Email</th>
         <th>Status</th>
@@ -97,7 +238,9 @@ include '../includes/header.php';
         echo "<tr><td colspan='6'>No students found</td></tr>";
     }
     ?>
-</table>
+</table> 
+
+
 
 
 
@@ -121,26 +264,25 @@ if (isset($_POST['add_student'])) {
     $kin_address = $_POST['kin_address'];
 
     // Insert student
-    $sql = "INSERT INTO students (banner_number, first_name, last_name, email, mobile_phone, home_address, dob, gender, student_category, current_status)
-            VALUES ('$banner_number', '$first_name', '$last_name', '$email', '$mobile_phone', '$home_address', '$dob', '$gender', '$student_category', 'Waiting')";
+    $sql = "INSERT INTO students (banner_number, first_name, last_name, email, mobile_phone, home_address, dob, gender, student_category)
+    VALUES ('$banner_number', '$first_name', '$last_name', '$email', '$mobile_phone', '$home_address', '$dob', '$gender', '$student_category')";
 
     if ($conn->query($sql) === TRUE) {
-        $student_id = $conn->insert_id; // Get the student ID
+    $student_id = $conn->insert_id; // Get the student ID
 
-        // Insert next-of-kin
-        $kin_sql = "INSERT INTO next_of_kin (student_id, name, relationship, contact_phone, address)
-                    VALUES ($student_id, '$kin_name', '$relationship', '$contact_phone', '$kin_address')";
-        if ($conn->query($kin_sql) === TRUE) {
-            echo "<p>Student and next-of-kin added successfully.</p>";
-            exit();
-        } else {
-            echo "<p>Error adding next-of-kin: " . $conn->error . "</p>";
-        }
+    // Insert next-of-kin
+    $kin_sql = "INSERT INTO next_of_kin (student_id, name, relationship, contact_phone, address)
+            VALUES ($student_id, '$kin_name', '$relationship', '$contact_phone', '$kin_address')";
+    if ($conn->query($kin_sql) === TRUE) {
+    // Redirect after successful insertion
+    exit();
     } else {
-        echo "<p>Error adding student: " . $conn->error . "</p>";
+    echo "Error adding next-of-kin: " . $conn->error;
+    }
+    } else {
+    echo "Error adding student: " . $conn->error;
     }
 }
-
 
 
 
@@ -158,7 +300,8 @@ if (isset($_GET['edit'])) {
 ?>
 
 <!-- Form to Edit Student -->
-<form action="" method="post">
+<div class="edit-form">
+    <form action="" method="post">
     <h3>Edit Student</h3>
     <input type="hidden" name="student_id" value="<?php echo $student['student_id']; ?>">
 
@@ -223,6 +366,8 @@ if (isset($_GET['edit'])) {
 
     <button type="submit" name="update_student">Update Student</button>
 </form>
+</div>
+
 <?php
 }
 
@@ -301,10 +446,7 @@ if (isset($_POST['update_student'])) {
     }
 }
 
-
-
-
-
-
 include '../includes/footer.php'; 
 ?>
+</body>
+</html>
