@@ -88,6 +88,9 @@
         background-color: #f1f1f1;
     }
 
+    .AR-container {
+        text-align: center;
+    }
 
 
 </style>
@@ -130,7 +133,7 @@
 <hr>
 
 <!-- Display Assigned Rooms -->
-<h4>Assigned Rooms</h4>
+<h4 class="AR-container">Assigned Rooms</h4>
 <table border="1">
     <tr>
         <th>Student Name</th>
