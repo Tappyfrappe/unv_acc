@@ -1,3 +1,75 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report</title>
+</head>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        margin: 0;
+        
+    }
+
+    .rep-font {
+        text-align: center
+
+    }
+
+    .h3 {
+        color: black;
+    }
+
+    .report-container {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 40px auto;
+        width: 80%;
+        max-width: 600px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .report-container nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        text-align: center;
+    }
+
+    .report-container nav ul li {
+        margin: 10px 0;
+    }
+
+    .report-container nav ul li a {
+        text-decoration: none;
+        color: #f1485b;
+        font-size: 1em;
+        padding: 10px 20px;
+        border: 1px solid #f1485b;
+        border-radius: 4px;
+        display: inline-block;
+        transition: all 0.3s ease;
+        background-color: #fff;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .report-container nav ul li a:hover {
+        background-color: #f1485b;
+        color: #fff;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        transform: translateY(-3px);
+    }
+</style>
+
+
+
+<body>
 <?php
 session_start();
 if (!isset($_SESSION['user_id'])) {
@@ -11,17 +83,20 @@ include '../includes/db_connect.php';
 include '../includes/header.php';
 ?>
 
-<h2>Reports</h2>
+<h2 class="rep-font">Reports</h2>
 
 <!-- Navigation for Reports -->
-<nav>
-    <ul>
-        <li><a href="?report=waiting_list">Students on Waiting List</a></li>
-        <li><a href="?report=available_rooms">Available Rooms</a></li>
-        <li><a href="?report=unpaid_invoices">Unpaid Invoices</a></li>
-        <li><a href="?report=rent_summary">Rent Summary</a></li>
-    </ul>
-</nav>
+ <div class="report-container">
+    <nav>
+        <ul>
+            <li><a href="?report=waiting_list">Students on Waiting List</a></li>
+            <li><a href="?report=available_rooms">Available Rooms</a></li>
+            <li><a href="?report=unpaid_invoices">Unpaid Invoices</a></li>
+            <li><a href="?report=rent_summary">Rent Summary</a></li>
+        </ul>
+    </nav>
+ </div>
+
 
 <hr>
 
@@ -49,6 +124,7 @@ if ($report === 'waiting_list') {
         echo "<p>No students on the waiting list.</p>";
     }
 }
+
 
 if ($report === 'available_rooms') {
     echo "<h3>Available Rooms</h3>";
@@ -139,3 +215,5 @@ if ($report === 'rent_summary') {
 ?>
 
 <?php include '../includes/footer.php'; ?>
+</body>
+</html>
