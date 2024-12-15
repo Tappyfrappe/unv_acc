@@ -56,8 +56,9 @@
 <!-- Form to Assign Room -->
 
 <form action="" method="post">
-    <h4 class="ar-container">Assign Room</h4>
+    
     <div class="another-container">
+        <h4 class="ar-container">Assign Room</h4>
         <select name="student_id" required>
         <option value="">Select Student</option>
         <?php

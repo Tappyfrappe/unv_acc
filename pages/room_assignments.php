@@ -8,7 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Assign Room</title>
 </head>
 
 <style>
@@ -21,6 +21,7 @@
         justify-content: center;
         align-items: center;
         background-color: #f9f9f9;
+        margin: 10px;
     }
 
     .navbar nav {
