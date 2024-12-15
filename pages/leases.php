@@ -104,6 +104,13 @@
 
 <?php
 session_start();
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../pages/login.php");
+    exit();
+}
+?>
+
+<?php
 include '../includes/db_connect.php';
 include '../includes/header.php';
 ?>
@@ -255,7 +262,3 @@ if (isset($_POST['add_lease'])) {
 <?php include '../includes/footer.php'; ?>
 </body>
 </html>
-
-
-
-
