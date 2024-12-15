@@ -117,13 +117,47 @@
         color: black;
     }
 
+    .alert {
+            width: 80%;
+            margin: 10px auto;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 16px;
+        }
+        .alert.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .alert.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
 
 </style>
 
-
-
 <body>
     
+<?php
+// Display success messages
+if (isset($_GET['success'])) {
+    $success_message = '';
+    if ($_GET['success'] == 'add_hall') {
+        $success_message = "Hall added successfully!";
+    } elseif ($_GET['success'] == 'add_room') {
+        $success_message = "Room added successfully!";
+    } elseif ($_GET['success'] == 'edit_room') {
+        $success_message = "Room updated successfully!";
+    }
+
+    if (!empty($success_message)) {
+        echo "<div class='alert success' id='alert-box'>$success_message</div>";
+    }
+}
+?>
 
 <!-- Add Hall Form -->
 <div class="addform-container">
@@ -198,6 +232,18 @@
     ?>
 </table>
 
+
+<script>
+    // Auto-hide alert after 5 seconds
+    setTimeout(() => {
+        const alertBox = document.getElementById('alert-box');
+        if (alertBox) {
+            alertBox.style.display = 'none';
+            // Refresh the page
+            window.location.href = window.location.pathname; // Removes query parameters
+        }
+    }, 5000);
+</script>
 
 </body>
 </html>
